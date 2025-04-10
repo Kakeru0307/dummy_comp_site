@@ -1,8 +1,13 @@
 import React, { useState, FormEvent } from 'react';
-import { api } from '../../lib/api';
+import { useRouter } from 'next/router';
+
+type UserComProps = {
+  actionURL: string; 
+};
 
 //ユーザー登録機能
-const UserCom: React.FC = () => {
+const UserCom: React.FC<UserComProps> = ( {actionURL} ) => {
+  const router = useRouter();
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -29,7 +34,10 @@ const UserCom: React.FC = () => {
     const data = await response.json();
 
     if (response.ok) {
-      alert('User created successfully');
+      alert('ユーザー登録が完了しました');
+      router.push(`${actionURL}?name=${encodeURIComponent(name)}`);
+    } else if (password != passwordConfirmation) {
+      alert("パスワードが一致しません")
     } else {
       alert('Error: ' + data.error);
     }
