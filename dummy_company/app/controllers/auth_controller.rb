@@ -30,7 +30,7 @@ class AuthController < ApplicationController
         :name, :email, :password, :password_confirmation,
         :name_kana, :gender, :birthday, :grade, :expected_graduation_year,
         :address, :education, :student_experience, :strengths_weaknesses,
-        :future_goals, :programming_experience, :certifications, :desired_positions
+        :future_goals, :programming_experience, :certifications, :real_name, :desired_positions
       )
     
       permitted.each do |key, value|
